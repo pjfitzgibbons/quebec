@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="intro.css" />
     <link rel="icon" href="/favicon.png" type="image/png"/>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
@@ -13,14 +14,20 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash"></script>
 
 </head>
+
+<!-- todo: cssgrid - header, footer, list, details -->
+<!-- todo: accordion panels on detail -->
+<!-- todo: store accordion collapse settings between "sessions" (browser refresh) -->
+<!-- todo: icons column - info, notes, type -->
+
 <body>
 <div id="app">
     <ol>
-        <todo-item
-                v-for="item in groceryList"
-                v-bind:todo="item"
-                v-bind:key="item.id"
-        ></todo-item>
+        <wbs-row
+                v-for="item in treeSort"
+                v-bind:item="treeObj[item]"
+                v-bind:key="item"
+        ></wbs-row>
     </ol>
 </div>
 
