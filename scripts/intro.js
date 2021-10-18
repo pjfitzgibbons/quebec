@@ -36,7 +36,7 @@ Vue.component('row-food', {
 
 
 var app = new Vue({
-    el: '#app',
+    el: '#container',
     store: store,
     computed: {
         ...Vuex.mapGetters(['treeSort', 'treeObj'])
