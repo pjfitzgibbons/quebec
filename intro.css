@@ -6,12 +6,14 @@ https://www.schemecolor.com/lacewing-butterfly.php
     --header-back: #E3C78E;
     --highlight-back: #F8E4D9;
     --text: #010404;
+    --border: #ccdede;
     --alert: #BE0618;
 }
 html, body {
     margin: 0;
     height: 100%; /* can also use viewport units (height: 100vh) */
     font-family: Verdana, Geneva, sans-serif;
+    font-size: 15px;
 }
 
 #container {
@@ -25,6 +27,7 @@ header {
     color: var(--header-text);
     padding-top: 17px;
     height: 40px;
+    font-size: 24px;
 }
 
 footer {
@@ -41,14 +44,51 @@ main {
 }
 
 aside {
-    width: 50%;
+    width: 70%;
     overflow: auto;
+}
+aside table {
+    width: 100%;
+    border-collapse: collapse;
+}
+aside td {
+    border-bottom: 1px solid var(--border);
+    padding: 2px 5px 2px 0;
+}
+aside td:first-child, aside th:first-child {
+    padding-left: 10px;
+}
+
+aside td:last-child, aside th:last-child {
+    padding-right: 10px;
+}
+aside td.expander {
+    width: 20px;
+    padding-right: 3px;
+}
+
+.wbs-expander-indent-1 { margin-left: 0; margin-right: 2px }
+.wbs-expander-indent-2 { margin-left: 20px; margin-right: 2px }
+.wbs-expander-indent-3 { margin-left: 40px; margin-right: 2px }
+.wbs-expander-indent-4 { margin-left: 60px; margin-right: 2px }
+.wbs-indent-1 { margin-left: 40px; margin-right: 2px }
+.wbs-indent-2 { margin-left: 50px; margin-right: 2px }
+.wbs-indent-3 { margin-left: 60px; margin-right: 2px }
+.wbs-indent-4 { margin-left: 70px; margin-right: 2px }
+
+.right-align {
+    text-align: right;
+}
+
+.wbs-row {
+    padding: 2px 0 3px 0;
 }
 
 article {
     width: 50%;
     overflow: auto;
 }
+
 
 section {
     height: 80%; /* takes the visible area of the "main" div */

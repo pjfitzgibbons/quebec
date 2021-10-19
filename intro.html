@@ -23,19 +23,14 @@
 <div id="container">
     <header>QUEBEC</header>
     <main>
-        <aside>The Aside<br/>
-            <wbs-row
-                    v-for="item in treeSort"
-                    v-bind:item="treeObj[item]"
-                    v-bind:key="item"
-            ></wbs-row>        </aside>
+        <aside>
+            <wbs-table></wbs-table>
+        </aside>
         <article>
         DETAILS
         </article>
     </main>
     <footer>FOOTER</footer>
-</div>
-
 </div>
 
 <script src="scripts/store.js"></script>
