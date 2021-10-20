@@ -45,7 +45,6 @@ main {
 
 aside {
     width: 70%;
-    overflow: auto;
 }
 aside table {
     width: 100%;
@@ -79,18 +78,65 @@ aside td.expander {
 .right-align {
     text-align: right;
 }
+.centered {
+    text-align: center;
+}
+.bold {
+    font-weight: bold;
+}
+.box {
+    border: 1px solid var(--border);
+    margin: 10px;
+    height: calc(100% - 20px);
+    overflow: auto
+}
 
 .wbs-row {
     padding: 2px 0 3px 0;
 }
 
+.selected-row {
+    background-color: var(--border);
+}
+
 article {
     width: 50%;
-    overflow: auto;
 }
 
 
 section {
     height: 80%; /* takes the visible area of the "main" div */
     border-bottom: 1px solid;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: calc(100% - 40px);
+    margin: 5px 20px;
+
+}
+
+.card-head {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
+    background-color: var(--highlight-back);
+}
+
+.card .container {
+    overflow: hidden;
+    transition: all 2s;
+    margin: 0 10px;
+}
+
+.card .expand-enter-active,
+.card .expand-leave-active {
+    transition: height .3s ease-in-out;
+    overflow: hidden;
+}
+
+.card .expand-enter,
+.card .expand-leave-to {
+    height: 0;
 }

@@ -61,7 +61,7 @@ const _generateProductTree = function () {
     })
     const treeObj = _.keyBy(treeList, item => item.wbs)
     const treeSort = _.map(treeList, item => item.wbs)
-    return {treeSort, treeObj}
+    return {treeSort, treeObj, currentSelectedWbs: '1'}
 
 }
 /* _randRange - range from lower to random upper-range
@@ -93,7 +93,8 @@ const productStore = new Vuex.Store({
     state: {
         count: 0,
         ..._generateProductTree(),
-        collapsedWbs: {}
+        collapsedWbs: {},
+        collapsedDetails: {}
     },
     mutations: {
         increment(state) {
@@ -107,12 +108,33 @@ const productStore = new Vuex.Store({
             else {
                 state.collapsedWbs = {...state.collapsedWbs, [wbs]: wbs}
             }
+        },
+        setCurrentStateWbs(state, wbs) {
+            Vue.set(state, 'currentSelectedWbs', wbs)
+        },
+        toggleCollapsedDetail(state, name) {
+            console.log("toggleCollapsedDetail", {state, name})
+            if (state.collapsedDetails[name] === undefined) {
+                state.collapsedDetails = {...state.collapsedDetails, [name]: name}
+            }
+            else {
+                const {[name]: undefined, ...newCollapsedDetails} = state.collapsedDetails
+                state.collapsedDetails = newCollapsedDetails
+            }
         }
-    },
+    }
+    ,
     actions: {
         toggleExpansion({commit}, wbs) {
             commit('toggleCollapsedWbs', wbs)
+        },
+        selectWbs: ({commit}, wbs) => {
+            commit('setCurrentStateWbs', wbs)
+        },
+        toggleDetailExpansion({commit}, name) {
+            commit('toggleCollapsedDetail', name)
         }
+
     },
     getters: {
         visibleTreeSort (state) {
@@ -143,6 +165,24 @@ const productStore = new Vuex.Store({
                 return  state.collapsedWbs[wbs] ? collapsedStates.MINUS : collapsedStates.PLUS
             else
                 return collapsedStates.NONE
+        },
+        currentItem: (state) => {
+            return state.treeObj[state.currentSelectedWbs]
+        },
+        itemText: (state) => (item) =>  {
+            switch (item._type) {
+                case 'Program':
+                    return item.product
+                case 'Product':
+                    return item.product
+                case 'Address':
+                    return item.address
+                case 'Food':
+                    return item.food
+            }
+        },
+        detailExpanded: (state) => (name) => {
+            return !state.collapsedDetails[name]
         }
     }
 })
